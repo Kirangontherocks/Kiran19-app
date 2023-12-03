@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Plant Care App</title>
+</head>
+<body>
+    <div id="app">
+        <h1>Plant Care App</h1>
+
+        <div class="plant-form">
+            <label for="plantName">Plant Name:</label>
+            <input v-model="newPlant.name" type="text" id="plantName" placeholder="Enter plant name">
+
+            <label for="wateringFrequency">Watering Frequency (in days):</label>
+            <input v-model="newPlant.wateringFrequency" type="number" id="wateringFrequency" placeholder="Enter watering frequency">
+
+            <button @click="addPlant">Add Plant</button>
+        </div>
+
+        <div v-if="plants.length > 0" class="plant-list">
+            <h2>Plant List</h2>
+            <ul>
+                <li v-for="(plant, index) in plants" :key="index">
+                    <strong>{{ plant.name }}</strong> - Water every {{ plant.wateringFrequency }} days
+                    <button @click="waterPlant(index)">Water</button>
+                    <button @click="removePlant(index)">Remove</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+</body>
+</html>
